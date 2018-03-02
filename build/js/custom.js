@@ -695,27 +695,25 @@ if (typeof NProgress != 'undefined') {
 				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
 				data: {
 					labels: [
-						"Symbian",
-						"Blackberry",
-						"Other",
-						"Android",
-						"IOS"
+						"BTC",
+						"ETHa",
+						"LTC",
+						"USD"
 					],
 					datasets: [{
-						data: [15, 20, 30, 10, 30],
+						data: [40, 20, 30, 10],
 						backgroundColor: [
+							"#3498DB",
+							"#26B99A",
+							"#E74C3C",
 							"#BDC3C7",
 							"#9B59B6",
-							"#E74C3C",
-							"#26B99A",
-							"#3498DB"
 						],
 						hoverBackgroundColor: [
-							"#CFD4D8",
-							"#B370CF",
-							"#E95E4F",
+							"#49A9EA",
 							"#36CAAB",
-							"#49A9EA"
+							"#E95E4F",
+							"#CFD4D8",
 						]
 					}]
 				},

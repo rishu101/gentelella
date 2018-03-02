@@ -25,7 +25,7 @@
     "Christian Esperar"
   ],
   "license": "MIT",
-  "main": "build/js/custom.min.js",
+  "main": "build/js/custom.js",
   "bugs": {
     "url": "https://github.com/puikinsh/gentelella/issues"
   },
