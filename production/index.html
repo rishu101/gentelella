@@ -135,7 +135,7 @@
 
         $(document).ready(function () {
           setUserAccount();
-          $('#walletBalance').html("$ "+JSON.parse(localStorage.getItem('userAccount')).portfolio.balance);
+          $('#walletBalance').html(JSON.parse(localStorage.getItem('userAccount')).portfolio.balance);
           $('#asset').html(JSON.parse(localStorage.getItem('userAccount')).portfolio.asset);
           var chart = {
             renderTo: 'container'
@@ -204,24 +204,38 @@
 
           var chart = new Highcharts.Chart(json)
 
-          $("#buy").click(function(){
+          $("#buy").click(function() {
             $("#sellMenu").hide();
             $("#buyMenu").show();
           });
-          $("#sell").click(function(){
+          $("#sell").click(function() {
             $("#buyMenu").hide();
             $("#sellMenu").toggle();
           });
 
-          $("#addMoney").click(function(){
+          $("#addMoney").click(function() {
             var amount = document.getElementById('amount').value;
             var accountDetails = JSON.parse(localStorage.getItem('userAccount'));
             accountDetails.portfolio.balance = Number(accountDetails.portfolio.balance) + Number(amount);
             accountDetails.portfolio.asset =  Number(accountDetails.portfolio.asset) + Number(amount);
             localStorage.setItem('userAccount', JSON.stringify(accountDetails));
-            $('#walletBalance').html("$ "+accountDetails.portfolio.balance);
+            $('#walletBalance').html(accountDetails.portfolio.balance);
             $('#asset').html(accountDetails.portfolio.asset);
             document.getElementById('amount').value = '';
+          })
+
+          $("#placeOrder").click(function() {
+            var accountDetails = JSON.parse(localStorage.getItem('userAccount'));
+            var currency = "#"+ $('#selectedCoin').val();
+            var rate = Number($(currency).text().split(",").join(""));
+            var amount = Number($('#buyAmount').val());
+            var coins = 0;
+            if(amount>accountDetails.portfolio.balance){
+
+            } else {
+              coins = amount/parseFloat(rate);
+            }
+            $('#coins').html(coins);
           })
         });
       </script>
@@ -370,7 +384,7 @@
               <i class="fa fa-btc"></i> BTC/USD</span>
             <div class="count">
               <i class="fa fa-usd"></i>
-              <button class="count btn btn-link green">11,152</button>
+              <button class="count btn btn-link green" id="BTC">11,152</button>
             </div>
             <span class="count_bottom">
               <i class="green">
@@ -381,7 +395,7 @@
               <i class="fa fa-btc"></i> ETH/USD</span>
             <div class="count">
               <i class="fa fa-usd"></i>
-              <button class="count btn btn-link green">873.44</button>
+              <button class="count btn btn-link green" id="ETH">873.44</button>
             </div>
             <span class="count_bottom">
               <i class="green">
@@ -392,7 +406,7 @@
               <i class="fa fa-btc"></i> LTC/USD</span>
             <div class="count">
               <i class="fa fa-usd"></i>
-              <button class="count btn btn-link red">209.52</button>
+              <button class="count btn btn-link red" id="LTC">209.52</button>
             </div>
             <span class="count_bottom">
               <i class="red">
@@ -403,7 +417,7 @@
               <i class="fa fa-btc"></i> XRP/USD</span>
             <div class="count">
               <i class="fa fa-usd"></i>
-              <button class="count btn btn-link green">0.919</button>
+              <button class="count btn btn-link green" id="XRP">0.919</button>
             </div>
             <span class="count_bottom">
               <i class="green">
@@ -447,7 +461,7 @@
 
 
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="x_panel tile fixed_height_320">
+            <div class="x_panel tile fixed_height_380">
               <div class="x_title">
 
                 <button id="buy" class="btn btn btn-success" data-toggle="collapse"> BUY </button>
@@ -467,9 +481,58 @@
               </div>
               <!-- Buy/sell menu content -->
               <div id="buyMenu" class="x_content collapse in">
-                <h4>Wallet Balance</h4> 
-                <div class="count" style="font-size:x-large" id="walletBalance"><i class="fa fa-usd"></i>0</div>
+                <h4 >Wallet Balance</h4>
+                <div class="row tile_count">
+                  <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+                    <div class="col-md-2 col-sm-2 col-xs-4 count">
+                        <i class="fa fa-usd"></i>
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-8 count">
+                        <div class="count" id="walletBalance">0</div>
+                    </div>
+                  </div>  
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <label class="control-label-left col-md-12 col-sm-12 col-xs-12">Choose Coin</label>
+                      <select class="form-control" id="selectedCoin">
+                        <option>BTC</option>
+                        <option>XRP</option>
+                        <option>LTC</option>
+                        <option>ETH</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <!-- Buy sell form -->
+              <div>
+
+                <form id="demo-form" data-parsley-validate class="form-horizontal form-label-left">
+
+                  <div class="form-group">
+                    <label class="control-label col-md-2 col-sm-2 col-xs-2" style="font-size: larger" for="buyAmount">$</label>
+                    <div class="col-md-9 col-sm-9 col-xs-10">
+                      <input type="number" id="buyAmount" required="required" placeholder="Enter amount to buy" class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-2 col-sm-2 col-xs-3">Coins</label>
+                    <div class="control-label col-md-9 col-sm-9 col-xs-9 count">
+                        <div class="control-label" style="font-size:larger" id="coins">0</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                      <button type = "button" class="btn btn-success" id="placeOrder" required>Place Order</button>
+                      <button class="btn btn-primary" type="reset">Cancel Order</button>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+
               <div id="sellMenu" class="x_content collapse">
                 <h4>Select coin</h4>
               </div>
