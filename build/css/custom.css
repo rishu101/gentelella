@@ -879,6 +879,9 @@ a:focus {
 .toggle a i {
     font-size: 26px
 }
+.toggle a i.main_heading{
+    width: 200px
+}
 .nav.child_menu>li>a {
     color: rgba(255, 255, 255, 0.75);
     font-size: 12px;
