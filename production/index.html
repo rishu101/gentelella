@@ -368,8 +368,14 @@
               <i class="green">
                 <i class="fa fa-money"></i>
               </i> Porfolio Value</span>
-            <div class="count"><i class="fa fa-usd"></i></div>
-            <div class="count" id="asset"> 0</div>
+            <div style="padding-top:8px">
+              <div class="col-md-2 col-sm-2 col-xs-4 count">
+                  <i class="fa fa-usd"></i>
+              </div>
+              <div class="col-md-10 col-sm-10 col-xs-8 count">
+                  <div class="count" id="asset">0</div>
+              </div>
+            </div>
           </div>
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
@@ -386,7 +392,7 @@
           </div>
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
-              <i class="fa fa-btc"></i> BTC/USD</span>
+              <i class="fa fa-btc green"></i> BTC/USD</span>
             <div class="count">
               <i class="fa fa-usd"></i>
               <button class="count btn btn-link green" id="BTC">11,152</button>
@@ -397,7 +403,7 @@
           </div>
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
-              <i class="fa fa-btc"></i> ETH/USD</span>
+              <i class="fa fa-btc green"></i> ETH/USD</span>
             <div class="count">
               <i class="fa fa-usd"></i>
               <button class="count btn btn-link green" id="ETH">873.44</button>
@@ -408,7 +414,7 @@
           </div>
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
-              <i class="fa fa-btc"></i> LTC/USD</span>
+              <i class="fa fa-btc green"></i> LTC/USD</span>
             <div class="count">
               <i class="fa fa-usd"></i>
               <button class="count btn btn-link red" id="LTC">209.52</button>
@@ -419,7 +425,7 @@
           </div>
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
-              <i class="fa fa-btc"></i> XRP/USD</span>
+              <i class="fa fa-btc green"></i> XRP/USD</span>
             <div class="count">
               <i class="fa fa-usd"></i>
               <button class="count btn btn-link green" id="XRP">0.919</button>
@@ -508,38 +514,36 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- Buy sell form -->
-              <div>
-
-                <form id="demo-form" data-parsley-validate class="form-horizontal form-label-left">
-
-                  <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-2" style="font-size: larger" for="buyAmount">$</label>
-                    <div class="col-md-9 col-sm-9 col-xs-10">
-                      <input type="number" id="buyAmount" required="required" placeholder="Enter amount to buy" class="form-control col-md-7 col-xs-12">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-3">Coins</label>
-                    <div class="control-label col-md-9 col-sm-9 col-xs-9 count">
-                        <div class="control-label" style="font-size:larger" id="coins">0</div>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                          <button type = "button" class="btn btn-success" id="placeOrder" required>Place Order</button>
-                      </div>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                          <button class="btn btn-primary" type="reset">Cancel Order</button>
+                <!-- Buy form -->
+                <div>
+                  <form id="demo-form" data-parsley-validate class="form-horizontal form-label-left">
+  
+                    <div class="form-group">
+                      <label class="control-label col-md-2 col-sm-2 col-xs-2" style="font-size: larger" for="buyAmount">$</label>
+                      <div class="col-md-9 col-sm-9 col-xs-10">
+                        <input type="number" id="buyAmount" required="required" placeholder="Enter amount to buy" class="form-control col-md-7 col-xs-12">
                       </div>
                     </div>
-                  </div>
-                </form>
-
+  
+                    <div class="form-group">
+                      <label class="control-label col-md-2 col-sm-2 col-xs-3">Coins</label>
+                      <div class="control-label col-md-9 col-sm-9 col-xs-9 count">
+                          <div class="control-label" style="font-size:larger" id="coins">0</div>
+                      </div>
+                    </div>
+  
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <button type = "button" class="btn btn-success" id="placeOrder" required>Place Order</button>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <button class="btn btn-primary" type="reset">Cancel Order</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div id="sellMenu" class="x_content collapse">
