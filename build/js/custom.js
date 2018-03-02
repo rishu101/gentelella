@@ -696,7 +696,7 @@ if (typeof NProgress != 'undefined') {
 				data: {
 					labels: [
 						"BTC",
-						"ETHa",
+						"ETH",
 						"LTC",
 						"USD"
 					],
