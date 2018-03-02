@@ -59,7 +59,7 @@
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2>John Doe</h2>
+              <h2>Sujeet Kumar</h2>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -131,6 +131,16 @@
 
         function setUserAccount() {
           if(!localStorage.getItem('userAccount')) localStorage.setItem('userAccount', JSON.stringify(userAccount));
+        }
+
+        function getCoinValue() {
+          var accountDetails = JSON.parse(localStorage.getItem('userAccount'));
+            var currency = $('#selectedSellingCoin').val();
+            var rate = Number($("#"+currency).text().split(",").join(""));
+            var coins = accountDetails[currency.toLowerCase()].no_coins;
+
+            $('#coinBalance').html(coins*rate);
+            //$('#walletBalance').html(accountDetails.portfolio.balance);
         }
 
         $(document).ready(function () {
@@ -211,39 +221,65 @@
           $("#sell").click(function() {
             $("#buyMenu").hide();
             $("#sellMenu").toggle();
+            getCoinValue();
+          });
+
+          $('#selectedSellingCoin').change(function(){
+              getCoinValue();
           });
 
           $("#addMoney").click(function() {
             var amount = document.getElementById('amount').value;
             var accountDetails = JSON.parse(localStorage.getItem('userAccount'));
             accountDetails.portfolio.balance = Number(accountDetails.portfolio.balance) + Number(amount);
-            accountDetails.portfolio.asset =  Number(accountDetails.portfolio.asset) + Number(amount);
             localStorage.setItem('userAccount', JSON.stringify(accountDetails));
             $('#walletBalance').html(accountDetails.portfolio.balance);
-            $('#asset').html(accountDetails.portfolio.asset);
             document.getElementById('amount').value = '';
           })
 
           $("#placeOrder").click(function() {
             var accountDetails = JSON.parse(localStorage.getItem('userAccount'));
-            var currency = "#"+ $('#selectedCoin').val();
-            var rate = Number($(currency).text().split(",").join(""));
+            var currency = $('#selectedCoin').val();
+            var rate = Number($("#"+currency).text().split(",").join(""));
             var amount = Number($('#buyAmount').val());
             var coins = 0;
             if(amount>accountDetails.portfolio.balance){
 
             } else {
               coins = amount/parseFloat(rate);
-              accountDetails.btc.no_coins = coins;
               accountDetails.portfolio.balance -= amount;
+              accountDetails.portfolio.asset += amount;
               localStorage.setItem('userAccount', JSON.stringify(accountDetails));
+              accountDetails[currency.toLowerCase()].no_coins+=coins;
             }
             $('#coins').html(coins);
             $('#walletBalance').html(accountDetails.portfolio.balance);
+            $('#asset').html(accountDetails.portfolio.asset);
+            document.getElementById('buyAmount').value = '';
+          })
+
+          $("#sellCoins").click(function() {
+            var accountDetails = JSON.parse(localStorage.getItem('userAccount'));
+            var currency = $('#selectedSellingCoin').val();
+            var rate = Number($("#"+currency).text().split(",").join(""));
+            var amount = Number($('#sellAmount').val());
+            var coins = 0;
+            if(amount>accountDetails.portfolio.balance){
+
+            } else {
+              coins = amount/parseFloat(rate);
+              accountDetails[currency.toLowerCase()].no_coins+=coins;
+              accountDetails.portfolio.balance += amount;
+              localStorage.setItem('userAccount', JSON.stringify(accountDetails));
+            }
+            $('#sold_coins').html(coins);
+            $('#walletBalance').html(accountDetails.portfolio.balance);
+            $('#coinBalance').html(coins*rate);
             document.getElementById('buyAmount').value = '';
           })
         });
       </script>
+
 
       <!-- top navigation -->
       <div class="top_nav">
@@ -258,7 +294,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="images/img.jpg" alt="">John Doe
+                  Sujeet Kumar
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -277,79 +313,6 @@
                   <li>
                     <a href="home.html">
                       <i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li role="presentation" class="dropdown">
-                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                  <i class="fa fa-envelope-o"></i>
-                  <span class="badge bg-green">6</span>
-                </a>
-                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                  <li>
-                    <a>
-                      <span class="image">
-                        <img src="images/img.jpg" alt="Profile Image" />
-                      </span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image">
-                        <img src="images/img.jpg" alt="Profile Image" />
-                      </span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image">
-                        <img src="images/img.jpg" alt="Profile Image" />
-                      </span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image">
-                        <img src="images/img.jpg" alt="Profile Image" />
-                      </span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <div class="text-center">
-                      <a>
-                        <strong>See All Alerts</strong>
-                        <i class="fa fa-angle-right"></i>
-                      </a>
-                    </div>
                   </li>
                 </ul>
               </li>
@@ -547,7 +510,59 @@
               </div>
 
               <div id="sellMenu" class="x_content collapse">
-                <h4>Select coin</h4>
+                <h4 >Current Holding</h4>
+                <div class="row tile_count">
+                  <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+                    <div class="col-md-2 col-sm-2 col-xs-4 count">
+                        <i class="fa fa-usd"></i>
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-8 count">
+                        <div class="count" id="coinBalance">0</div>
+                    </div>
+                  </div>  
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <label class="control-label-left col-md-12 col-sm-12 col-xs-12">Choose Coin</label>
+                      <select class="form-control" id="selectedSellingCoin">
+                        <option>BTC</option>
+                        <option>XRP</option>
+                        <option>LTC</option>
+                        <option>ETH</option>
+                        <option selected="selected">BTC</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- Buy form -->
+                <div>
+                  <form id="demo-form" data-parsley-validate class="form-horizontal form-label-left">
+  
+                    <div class="form-group">
+                      <label class="control-label col-md-2 col-sm-2 col-xs-2" style="font-size: larger" for="sellAmount">$</label>
+                      <div class="col-md-9 col-sm-9 col-xs-10">
+                        <input type="number" id="sellAmount" required="required" placeholder="Enter amount to sell" class="form-control col-md-7 col-xs-12">
+                      </div>
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label col-md-2 col-sm-2 col-xs-3">Coins</label>
+                      <div class="control-label col-md-9 col-sm-9 col-xs-9 count">
+                          <div class="control-label" style="font-size:larger" id="sold_coins">0</div>
+                      </div>
+                    </div>
+  
+                    <div class="form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <button type = "button" class="btn btn-success" id="sellCoins" required>Place Order</button>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <button class="btn btn-primary" type="reset">Cancel Order</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
 
             </div>
