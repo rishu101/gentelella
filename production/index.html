@@ -103,18 +103,24 @@
             renderTo: 'container'
           }
           var title = {
-            text: 'Average Temperatures of Cities'
-          };
-          var subtitle = {
-            text: 'Source: worldClimate.com'
+            text: 'Price Comparison for the last 24 hours'
           };
           var xAxis = {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            type: 'datetime',
           };
+          var plotOptions = {
+            series: {
+              pointStart: Date.UTC(2010, 0, 1),
+              pointEnd: Date.UTC(2010, 0, 2),
+              pointInterval: 15 * 60 * 1000, // 5 mins
+              marker: {
+                enabled: false
+            }
+            }
+          }
           var yAxis = {
             title: {
-              text: 'Temperature (\xB0C)'
+              text: 'Price (US $)'
             },
             plotLines: [{
               value: 0,
@@ -123,7 +129,7 @@
             }]
           };
           var tooltip = {
-            valueSuffix: '\xB0C'
+            valueSuffix: '$'
           }
           var legend = {
             layout: 'vertical',
@@ -132,31 +138,31 @@
             borderWidth: 0
           };
           var series = [{
-            name: 'Tokyo',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
-              26.5, 23.3, 18.3, 13.9, 9.6]
+            name: 'BitCoin',
+            data: [10650, 10667, 10201, 10183, 10122, 10274, 10504, 10866, 10464, 10921, 10182, 10123, 10597, 10699, 10636, 10768, 10817, 10608, 10606, 10284, 10086, 10707, 10113, 10035, 10478, 10163, 10057, 10448, 10809, 10555, 10104, 10143, 10565, 10934, 10406, 10300, 10213, 10113, 10941, 10912, 10443, 10029, 10911, 10912, 10017, 10300, 10119, 10342, 10716, 10426, 10912, 10646, 10358, 10645, 10496, 10370, 10883, 10363, 10836, 10866, 10914, 10494, 10925, 10088, 10466, 10134, 10763, 10839, 10503, 10670, 10976, 10789, 10409, 10684, 10643, 10539, 10056, 10339, 10118, 10200, 10108, 10266, 10564, 10318, 10393, 10304, 10742, 10953, 10635, 10006, 10878, 10114, 10605, 10766, 10075, 10993]
           },
           {
-            name: 'New York',
-            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
-              24.1, 20.1, 14.1, 8.6, 2.5]
+            name: 'Ethereum',
+            data: [880, 873, 877, 879, 874, 884, 874, 881, 886, 875, 878, 875, 882, 873, 889, 888, 887, 872, 886, 885, 877, 888, 879, 871, 880, 874, 883, 878, 881, 889, 874, 889, 882, 883, 887, 881, 874, 886, 886, 874, 871, 884, 876, 887, 887, 887, 879, 875, 870, 877, 890, 880, 882, 879, 889, 879, 877, 889, 880, 881, 884, 888, 884, 883, 875, 883, 873, 883, 878, 879, 871, 886, 873, 883, 884, 887, 883, 885, 876, 876, 886, 870, 870, 886, 879, 874, 875, 879, 881, 882, 884, 876, 872, 875, 874, 880]
           },
           {
-            name: 'London',
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
-              16.6, 14.2, 10.3, 6.6, 4.8]
+            name: 'Litecoin',
+            data: [237, 203, 236, 220, 230, 203, 219, 222, 212, 233, 226, 230, 207, 223, 208, 232, 214, 225, 222, 205, 216, 208, 210, 239, 215, 211, 230, 229, 222, 225, 213, 205, 206, 220, 204, 228, 207, 237, 215, 202, 219, 219, 228, 201, 202, 211, 205, 213, 224, 217, 222, 233, 230, 232, 234, 225, 231, 225, 229, 212, 209, 214, 231, 217, 215, 203, 231, 212, 203, 225, 228, 224, 206, 212, 217, 236, 203, 213, 212, 221, 220, 203, 236, 217, 226, 215, 203, 227, 233, 222, 229, 234, 227, 213, 217, 201]
+          }, {
+            name: 'Ripple',
+            data: [7, 2, 9, 2, 5, 1, 4, 1, 10, 10, 5, 2, 3, 8, 7, 3, 8, 9, 7, 5, 2, 7, 1, 1, 10, 10, 3, 1, 3, 2, 3, 1, 7, 2, 3, 3, 10, 9, 6, 7, 6, 1, 6, 10, 1, 10, 2, 5, 1, 3, 5, 5, 10, 8, 4, 9, 8, 10, 8, 4, 7, 6, 6, 3, 2, 1, 7, 2, 1, 10, 2, 6, 2, 5, 5, 9, 9, 4, 6, 4, 10, 8, 6, 9, 8, 7, 8, 9, 3, 4, 8, 2, 6, 7, 2, 6]
           }
           ];
 
           var json = {};
           json.chart = chart;
           json.title = title;
-          json.subtitle = subtitle;
           json.xAxis = xAxis;
           json.yAxis = yAxis;
           json.tooltip = tooltip;
           json.legend = legend;
           json.series = series;
+          json.plotOptions = plotOptions;
 
           var chart = new Highcharts.Chart(json)
 
@@ -290,14 +296,22 @@
         <!-- top tiles -->
         <div class="row tile_count">
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"> 
-                <i class="green"><i class="fa fa-money"></i></i> Porfolio Value</span>
-            <div class="count"><i class="fa fa-usd"></i> 1300</div>
+            <span class="count_top">
+              <i class="green">
+                <i class="fa fa-money"></i>
+              </i> Porfolio Value</span>
+            <div class="count">
+              <i class="fa fa-usd"></i> 1300</div>
           </div>
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
-              <i class="green"><i class="fa fa-money"></i></i> Profit / Loss</span>
-            <div class="count"><i class="fa fa-usd"></i><button class="count btn btn-link green">300</button></div>
+              <i class="green">
+                <i class="fa fa-money"></i>
+              </i> Profit / Loss</span>
+            <div class="count">
+              <i class="fa fa-usd"></i>
+              <button class="count btn btn-link green">300</button>
+            </div>
             <span class="count_bottom">
               <i class="green">
                 <i class="fa fa-sort-asc"></i>8% </i> Change (24h)</span>
@@ -305,7 +319,10 @@
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
               <i class="fa fa-btc"></i> BTC/USD</span>
-            <div class="count"><i class="fa fa-usd"></i><button class="count btn btn-link green">11,152</button></div>
+            <div class="count">
+              <i class="fa fa-usd"></i>
+              <button class="count btn btn-link green">11,152</button>
+            </div>
             <span class="count_bottom">
               <i class="green">
                 <i class="fa fa-sort-asc"></i>5.89% </i> Change (24h)</span>
@@ -313,7 +330,10 @@
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
               <i class="fa fa-btc"></i> ETH/USD</span>
-            <div class="count"><i class="fa fa-usd"></i><button class="count btn btn-link green">873.44</button></div>
+            <div class="count">
+              <i class="fa fa-usd"></i>
+              <button class="count btn btn-link green">873.44</button>
+            </div>
             <span class="count_bottom">
               <i class="green">
                 <i class="fa fa-sort-asc"></i>1% </i> Change (24h)</span>
@@ -321,7 +341,10 @@
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
               <i class="fa fa-btc"></i> LTC/USD</span>
-            <div class="count"><i class="fa fa-usd"></i><button class="count btn btn-link red">209.52</button></div>
+            <div class="count">
+              <i class="fa fa-usd"></i>
+              <button class="count btn btn-link red">209.52</button>
+            </div>
             <span class="count_bottom">
               <i class="red">
                 <i class="fa fa-sort-desc"></i>2.15% </i> Change (24h)</span>
@@ -329,7 +352,10 @@
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top">
               <i class="fa fa-btc"></i> XRP/USD</span>
-            <div class="count"><i class="fa fa-usd"></i><button class="count btn btn-link green">0.919</button></div>
+            <div class="count">
+              <i class="fa fa-usd"></i>
+              <button class="count btn btn-link green">0.919</button>
+            </div>
             <span class="count_bottom">
               <i class="green">
                 <i class="fa fa-sort-asc"></i>1.3% </i> Change (24h)</span>
@@ -475,7 +501,7 @@
             <div class="x_panel tile fixed_height_320">
               <div class="x_title">
                 <h2>Add Money to Wallet</h2>
-                
+
                 <ul class="nav navbar-right panel_toolbox">
                   <li>
                     <a class="collapse-link">
@@ -527,59 +553,59 @@
               </div>
             </div>
           </div>
-      <!-- /page content -->
+          <!-- /page content -->
 
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          <a href="http://pcsitspl.com/">PCS IT Solutions</a>
+          <!-- footer content -->
+          <footer>
+            <div class="pull-right">
+              <a href="http://pcsitspl.com/">PCS IT Solutions</a>
+            </div>
+            <div class="clearfix"></div>
+          </footer>
+          <!-- /footer content -->
         </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
-    </div>
-  </div>
+      </div>
 
-  <!-- jQuery -->
-  <script src="../vendors/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- FastClick -->
-  <script src="../vendors/fastclick/lib/fastclick.js"></script>
-  <!-- NProgress -->
-  <script src="../vendors/nprogress/nprogress.js"></script>
-  <!-- Chart.js -->
-  <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
-  <!-- gauge.js -->
-  <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
-  <!-- bootstrap-progressbar -->
-  <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-  <!-- iCheck -->
-  <script src="../vendors/iCheck/icheck.min.js"></script>
-  <!-- Skycons -->
-  <script src="../vendors/skycons/skycons.js"></script>
-  <!-- Flot -->
-  <script src="../vendors/Flot/jquery.flot.js"></script>
-  <script src="../vendors/Flot/jquery.flot.pie.js"></script>
-  <script src="../vendors/Flot/jquery.flot.time.js"></script>
-  <script src="../vendors/Flot/jquery.flot.stack.js"></script>
-  <script src="../vendors/Flot/jquery.flot.resize.js"></script>
-  <!-- Flot plugins -->
-  <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-  <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-  <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
-  <!-- DateJS -->
-  <script src="../vendors/DateJS/build/date.js"></script>
-  <!-- JQVMap -->
-  <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
-  <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-  <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-  <!-- bootstrap-daterangepicker -->
-  <script src="../vendors/moment/min/moment.min.js"></script>
-  <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+      <!-- jQuery -->
+      <script src="../vendors/jquery/dist/jquery.min.js"></script>
+      <!-- Bootstrap -->
+      <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+      <!-- FastClick -->
+      <script src="../vendors/fastclick/lib/fastclick.js"></script>
+      <!-- NProgress -->
+      <script src="../vendors/nprogress/nprogress.js"></script>
+      <!-- Chart.js -->
+      <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+      <!-- gauge.js -->
+      <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+      <!-- bootstrap-progressbar -->
+      <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+      <!-- iCheck -->
+      <script src="../vendors/iCheck/icheck.min.js"></script>
+      <!-- Skycons -->
+      <script src="../vendors/skycons/skycons.js"></script>
+      <!-- Flot -->
+      <script src="../vendors/Flot/jquery.flot.js"></script>
+      <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+      <script src="../vendors/Flot/jquery.flot.time.js"></script>
+      <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+      <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+      <!-- Flot plugins -->
+      <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+      <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+      <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+      <!-- DateJS -->
+      <script src="../vendors/DateJS/build/date.js"></script>
+      <!-- JQVMap -->
+      <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+      <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+      <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+      <!-- bootstrap-daterangepicker -->
+      <script src="../vendors/moment/min/moment.min.js"></script>
+      <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-  <!-- Custom Theme Scripts -->
-  <script src="../build/js/custom.js"></script>
+      <!-- Custom Theme Scripts -->
+      <script src="../build/js/custom.js"></script>
 
 </body>
 
