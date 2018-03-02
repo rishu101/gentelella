@@ -18,7 +18,7 @@
   <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
 
   <!-- Custom Theme Style -->
-  <link href="../build/css/custom.min.css" rel="stylesheet">
+  <link href="../build/css/custom.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -201,57 +201,74 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Plain Page</h3>
-            </div>
-
-            <div class="title_right">
-              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search for...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
-                </div>
-              </div>
+              <h3 style='padding-left:20px'>Help</h3>
             </div>
           </div>
 
           <div class="clearfix"></div>
 
           <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
+            <div class="col-md-8 col-sm-8 col-xs-8">
+              <!-- <div class="x_panel">
                 <div class="x_title">
-                  <h2>Plain Page</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                      <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                      </a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="fa fa-wrench"></i>
-                      </a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li>
-                          <a href="#">Settings 1</a>
-                        </li>
-                        <li>
-                          <a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a class="close-link">
-                        <i class="fa fa-close"></i>
-                      </a>
-                    </li>
-                  </ul>
+                  <h2>Question</h2>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  Add content to the page ...
+                  Answer
+                </div>
+              </div>
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Question</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  Answer
+                </div>
+              </div>
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Question</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  Answer
+                </div>
+              </div>
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Question</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  Answer
+                </div>
+              </div> -->
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>In case of queries please contact us.
+                  </h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                  <!-- start form for validation -->
+                  <form id="demo-form" data-parsley-validate>
+                    <label for="fullname">Full Name :</label>
+                    <input type="text" id="fullname" class="form-control" name="fullname" required />
+
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" class="form-control" name="email" data-parsley-trigger="change" required />
+                    <label for="message">Your Message :</label>
+                    <textarea id="message" required="required" class="form-control" name="message" ></textarea>
+                    <div>please expect a reply within 2 business days.</div>
+                    <br/>
+                    <span class="btn btn-primary">Send</span>
+
+                  </form>
+                  <!-- end form for validations -->
+
                 </div>
               </div>
             </div>
