@@ -45,7 +45,7 @@
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
             <a href="index.html" class="site_title">
-              <i class="fa fa-paw"></i>
+              <i class="fa fa-gg-circle"></i>
               <span>My Crypto Portal!</span>
             </a>
           </div>
@@ -148,8 +148,8 @@
           };
           var plotOptions = {
             series: {
-              pointStart: Date.UTC(2010, 0, 1),
-              pointEnd: Date.UTC(2010, 0, 2),
+              pointStart: moment().subtract(1, 'days'),
+              pointEnd: moment(),
               pointInterval: 15 * 60 * 1000, // 5 mins
               marker: {
                 enabled: false
@@ -607,11 +607,12 @@
 
           <!-- footer content -->
           <footer>
-            <div class="pull-right">
-              <a href="http://pcsitspl.com/">PCS IT Solutions</a>
-            </div>
-            <div class="clearfix"></div>
-          </footer>
+              <div class="pull-right">
+                Developed By
+                <a href="http://pcsitspl.com/">Pefect and Complete Solutions Inc</a>
+              </div>
+              <div class="clearfix"></div>
+            </footer>
           <!-- /footer content -->
         </div>
       </div>
